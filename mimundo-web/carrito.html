@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu carrito — Mi Mundo Hecho a Mano</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Jost:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/analytics.js"></script>
+</head>
+<body>
+
+<div class="promo-bar">🌿 Envíos a todo Chile · <strong>Ofertas de temporada en piezas seleccionadas</strong></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Mi Mundo <span>Hecho a Mano</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav"></nav>
+  </div>
+</header>
+
+<main class="cart-page">
+  <div class="section-head">
+    <span class="tag-label">tu pedido</span>
+    <h2>Carrito de compras</h2>
+  </div>
+
+  <div id="cartEmpty" class="cart-empty" style="display:none">
+    <p>Tu carrito está vacío por ahora 🌿</p>
+    <a href="index.html#tienda" class="btn btn-primary">Ver la tienda</a>
+  </div>
+
+  <div id="cartWrap" class="cart-list"></div>
+
+  <div id="cartSummary" class="cart-summary" style="display:none">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span id="cartTotal" class="cart-total-amount">$0</span>
+    </div>
+    <div class="cart-summary-actions">
+      <button type="button" id="btnVaciar" class="btn btn-ghost">Vaciar carrito</button>
+      <button type="button" id="btnPagar" class="btn btn-primary">Pagar con Mercado Pago</button>
+    </div>
+    <p class="cart-note">Pagas todos los productos juntos, de forma segura, en Mercado Pago.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-logo">Mi Mundo <span>Hecho a Mano</span></p>
+  <p>Hecho con cariño, pieza a pieza · <span data-footer-year></span></p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data-core.js"></script>
+<!-- SECCIONES: si agregas una sección nueva, agrega aquí su línea (ver LEEME.md) -->
+<script src="js/secciones/joyeria.js"></script>
+<script src="js/secciones/decoracion-hogar.js"></script>
+<script src="js/secciones/scrapbooking.js"></script>
+<script src="js/secciones/talleres.js"></script>
+<!-- fin secciones -->
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/carrito.js"></script>
+</body>
+</html>

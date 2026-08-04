@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Mundo Hecho a Mano — Joyas, Decoración, Scrapbooking y Clases</title>
+<meta name="description" content="Joyas artesanales, decoración de hogar pintada a mano, scrapbooking y clases de pintura decorativa individuales o grupales.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Jost:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/analytics.js"></script>
+</head>
+<body>
+
+<!-- ===== BARRA DE PROMOCIÓN ===== -->
+<!--<div class="promo-bar">🇨🇱 Envíos a todo Chile · <strong>Ofertas de temporada en piezas seleccionadas</strong></div>-->
+
+<!-- ===== NAV (semioculta: se expande al acercar el mouse a cada sección) ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Mi Mundo <span>Hecho a Mano</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav"></nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-board">
+    <div class="polaroid p1"><div class="ph-img ph-1"></div><span>joyas ✂</span></div>
+    <div class="polaroid p2"><div class="ph-img ph-2"></div><span>decoración 🎨</span></div>
+    <div class="polaroid p3"><div class="ph-img ph-3"></div><span>scrap 📔</span></div>
+    <div class="washi w1"></div>
+    <div class="washi w2"></div>
+    <div class="washi w3"></div>
+  </div>
+  <div class="hero-copy">
+    <p class="eyebrow-script">bienvenida a</p>
+    <h1>Mi Mundo<br>Hecho a Mano</h1>
+    <p class="hero-sub">Piezas únicas creadas a mano: joyas, decoración para tu hogar, papelería de scrapbooking y clases de pintura decorativa para quienes quieren aprender a crear las suyas propias.</p>
+    <div class="hero-actions">
+      <a href="#tabsCategorias" class="btn btn-primary">Ver la tienda</a>
+      <a href="#contacto" class="btn btn-outline">Escríbeme</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TABS DE CATEGORÍAS (armados solos desde tus secciones) ===== -->
+<nav class="tabs-categorias" id="tabsCategorias" aria-label="Categorías"></nav>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<!-- ===== MÁS VENDIDOS (scroll horizontal) ===== -->
+<section class="carousel-section" id="carouselSection">
+  <div class="carousel-head">
+    <div class="section-head" style="margin-bottom:0">
+      <span class="tag-label">favoritos</span>
+      <h2>Lo más vendido</h2>
+    </div>
+  </div>
+  <div class="carousel-track" id="carouselTrack"></div>
+</section>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<!-- ===== SECCIONES (bloque con foto lateral, arma solo desde js/secciones/*.js) ===== -->
+<section class="shop-section">
+  <div class="section-head">
+    <span class="tag-label">explora</span>
+    <h2>Cada colección, a tu manera</h2>
+    <p>Entra a cualquier sección o filtra directo desde el menú de arriba.</p>
+  </div>
+  <div class="feature-blocks" id="featureBlocks"></div>
+</section>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<!-- ===== CONTACTO ===== -->
+<section class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <h2>¿Tienes una idea en mente?</h2>
+    <p>Escríbeme y conversemos: pedidos a medida, colores, tamaños o fechas para tu clase.</p>
+    <div class="contact-actions">
+      <a id="whatsappLink" class="btn btn-primary" href="#" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+      <a id="instagramLink" class="btn btn-outline" href="#" target="_blank" rel="noopener">Sígueme en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p class="footer-logo">Mi Mundo <span>Hecho a Mano</span></p>
+  <p>Hecho con cariño, pieza a pieza · <span data-footer-year></span></p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data-core.js"></script>
+<!-- SECCIONES: si agregas una sección nueva, agrega aquí su línea (ver LEEME.md) -->
+<script src="js/secciones/joyeria.js"></script>
+<script src="js/secciones/decoracion-hogar.js"></script>
+<script src="js/secciones/scrapbooking.js"></script>
+<script src="js/secciones/talleres.js"></script>
+<!-- fin secciones -->
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Mundo Hecho a Mano</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Jost:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/analytics.js"></script>
+</head>
+<body>
+
+<div class="promo-bar">🌿 Envíos a todo Chile · <strong>Ofertas de temporada en piezas seleccionadas</strong></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Mi Mundo <span>Hecho a Mano</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav"></nav>
+  </div>
+</header>
+
+<main>
+  <div id="catNotFound" class="not-found" style="display:none">
+    <h2>No encontramos esa sección 🌿</h2>
+    <p>Puede que el enlace esté mal escrito.</p>
+    <a href="index.html" class="btn btn-primary">Volver al inicio</a>
+  </div>
+
+  <section class="shop-section" id="catContent">
+    <div class="section-head">
+      <span class="tag-label" id="catEtiqueta">colección</span>
+      <h2 id="catNombre">Sección</h2>
+      <p id="catDescripcion"></p>
+    </div>
+
+    <button type="button" id="btnAbrirFiltros" class="btn btn-outline btn-small filtros-toggle-movil">
+      Filtrar
+    </button>
+
+    <div class="categoria-layout">
+      <aside class="filtros-panel" id="filtrosPanel">
+        <div class="filtros-header">
+          <h3>Filtrar por</h3>
+          <button type="button" id="cerrarFiltros" class="filtros-cerrar" aria-label="Cerrar filtros">✕</button>
+        </div>
+        <div id="filtrosGrupos"></div>
+        <div class="filtros-acciones">
+          <button type="button" id="btnLimpiarFiltros" class="btn btn-ghost btn-small">Limpiar</button>
+          <button type="button" id="btnAplicarFiltros" class="btn btn-primary btn-small">Filtrar</button>
+        </div>
+      </aside>
+
+      <div class="categoria-resultados">
+        <p id="catResultadosCount" class="resultados-count"></p>
+        <div class="product-grid" id="catGrid"></div>
+        <p id="catSinResultados" class="sin-resultados" style="display:none">
+          No hay productos con esos filtros. Prueba quitar alguno.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<section class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <h2>¿Tienes una idea en mente?</h2>
+    <p>Escríbeme y conversemos: pedidos a medida, colores, tamaños o fechas para tu clase.</p>
+    <div class="contact-actions">
+      <a id="whatsappLink" class="btn btn-primary" href="#" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+      <a id="instagramLink" class="btn btn-outline" href="#" target="_blank" rel="noopener">Sígueme en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p class="footer-logo">Mi Mundo <span>Hecho a Mano</span></p>
+  <p>Hecho con cariño, pieza a pieza · <span data-footer-year></span></p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data-core.js"></script>
+<!-- SECCIONES: si agregas una sección nueva, agrega aquí su línea (ver LEEME.md) -->
+<script src="js/secciones/joyeria.js"></script>
+<script src="js/secciones/decoracion-hogar.js"></script>
+<script src="js/secciones/scrapbooking.js"></script>
+<script src="js/secciones/talleres.js"></script>
+<!-- fin secciones -->
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/categoria.js"></script>
+</body>
+</html>
