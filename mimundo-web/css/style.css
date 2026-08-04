@@ -91,7 +91,7 @@ section{ padding:5rem 6vw; }
 @media (max-width:640px){ .site-header{ top:0px; } }
 .header-inner{
   display:flex; flex-direction:column; align-items:center; gap:.15rem;
-  padding:1.1rem 6vw .0rem; position:relative;
+  padding:1.1rem 6vw 0rem; position:relative;
   max-width:1300px; margin:0 auto;
 }
 .logo{ font-family:var(--f-display); font-size:1.9rem; font-weight:600; font-style:italic; }
@@ -165,7 +165,7 @@ section{ padding:5rem 6vw; }
   .nav-link-row{ justify-content:space-between; }
 }
 .nav-cart{
-  position:absolute; right:6vw; top:1rem;
+  position:absolute; right:14vw; top:1rem;
   display:inline-flex; align-items:center; justify-content:center;
   width:42px; height:42px; border-radius:50%;
   background:var(--kraft) ; color:var(--rose-dark);
@@ -191,6 +191,7 @@ section{ padding:5rem 6vw; }
   .nav-toggle{ display:flex; }
   .main-nav{
     position:absolute; top:100%; left:0; right:0;
+    width:100%; margin-left:0; margin-right:0;
     background:var(--bg); flex-direction:column; gap:0;
     max-height:0; overflow:hidden; transition:max-height .3s ease;
     border-bottom:2px dashed var(--rose);
