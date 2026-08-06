@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Mundo Hecho a Mano</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Jost:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/analytics.js"></script>
+</head>
+<body class="pagina-producto">
+
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Mi Mundo <span>Hecho a Mano</span></a>
+    <nav class="main-nav" id="mainNav"></nav>
+    <div class="header-actions">
+      <div id="navCartSlot"></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="prodNotFound" class="not-found" style="display:none">
+    <h2>No encontramos ese producto 🌿</h2>
+    <p>Puede que el enlace esté mal escrito.</p>
+    <a href="index.html" class="btn btn-primary">Volver al inicio</a>
+  </div>
+
+  <section class="product-page" id="prodContent">
+    <a href="#" id="prodBreadcrumb" class="breadcrumb">← Volver a la colección</a>
+
+    <div class="product-layout">
+      <div class="product-gallery">
+        <div class="product-photo-main" id="prodFotoPrincipal"></div>
+        <div class="product-thumbs" id="prodMiniaturas"></div>
+      </div>
+
+      <div class="product-info">
+        <div class="class-meta" id="prodPills"></div>
+        <h1 id="prodNombre">Producto</h1>
+        <div id="prodPrecio"></div>
+        <p class="product-desc" id="prodDescripcion"></p>
+
+        <div class="product-buy-row">
+          <div class="qty-stepper">
+            <button type="button" class="qty-btn" id="prodMenos">−</button>
+            <span class="qty-value" id="prodCantidad">1</span>
+            <button type="button" class="qty-btn" id="prodMas">+</button>
+          </div>
+          <button type="button" class="btn btn-primary" id="prodAgregar">Agregar al carrito</button>
+        </div>
+
+        <a id="prodWhatsapp" class="btn btn-ghost" href="#" target="_blank" rel="noopener">
+          ¿Tienes dudas? Escríbeme por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="stitch-divider" aria-hidden="true"></div>
+
+<section class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <h2>¿Tienes una idea en mente?</h2>
+    <p>Escríbeme y conversemos: pedidos a medida, colores, tamaños o fechas para tu clase.</p>
+    <div class="contact-actions">
+      <a id="whatsappLink" class="btn btn-primary" href="#" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+      <a id="instagramLink" class="btn btn-outline" href="#" target="_blank" rel="noopener">Sígueme en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p class="footer-logo">Mi Mundo <span>Hecho a Mano</span></p>
+  <p>Hecho con cariño, pieza a pieza · <span data-footer-year></span></p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data-core.js"></script>
+<script src="js/secciones/joyeria.js"></script>
+<script src="js/secciones/decoracion-hogar.js"></script>
+<script src="js/secciones/scrapbooking.js"></script>
+<script src="js/secciones/talleres.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/producto.js"></script>
+</body>
+</html>
