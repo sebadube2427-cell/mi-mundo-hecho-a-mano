@@ -32,40 +32,57 @@ function _renderMasVendidos() {
     return;
   }
 
-destacados.forEach(({ item, cat }) => track.appendChild(renderProductCard(item, cat)));
+  destacados.forEach(({ item, cat }) => track.appendChild(renderProductCard(item, cat)));
 
   _setupDragScroll(track);
 }
 
 function _setupDragScroll(el) {
+  let presionando = false;
   let arrastrando = false;
   let startX = 0;
   let scrollInicial = 0;
 
   el.addEventListener("mousedown", (e) => {
-    arrastrando = true;
-    el.classList.add("arrastrando");
+    presionando = true;
+    arrastrando = false;
     startX = e.pageX;
     scrollInicial = el.scrollLeft;
   });
 
   window.addEventListener("mouseup", () => {
-    arrastrando = false;
-    el.classList.remove("arrastrando");
+    if (!presionando) return;
+    presionando = false;
+    if (arrastrando) {
+      arrastrando = false;
+      // deja el bloqueo un instante más para que el "click" que
+      // sigue al soltar el mouse no abra el producto sin querer
+      setTimeout(() => el.classList.remove("arrastrando"), 0);
+    }
   });
 
   el.addEventListener("mouseleave", () => {
+    presionando = false;
     arrastrando = false;
     el.classList.remove("arrastrando");
   });
 
   el.addEventListener("mousemove", (e) => {
-    if (!arrastrando) return;
-    e.preventDefault();
+    if (!presionando) return;
     const distancia = e.pageX - startX;
-    el.scrollLeft = scrollInicial - distancia;
-  });
 
+    // recién ahora, si de verdad se movió, se activa el modo
+    // "arrastre" (y ahí sí se bloquean los clics en las tarjetas)
+    if (!arrastrando && Math.abs(distancia) > 5) {
+      arrastrando = true;
+      el.classList.add("arrastrando");
+    }
+
+    if (arrastrando) {
+      e.preventDefault();
+      el.scrollLeft = scrollInicial - distancia;
+    }
+  });
 }
 
 function _renderBloquesSeccion() {
