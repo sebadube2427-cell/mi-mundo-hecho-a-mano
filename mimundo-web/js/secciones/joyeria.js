@@ -3,27 +3,17 @@
 
    Para crear una sección nueva, copia este archivo completo,
    cámbiale el nombre (ej: js/secciones/velas.js) y edita todo
-   lo de abajo. Luego agrégalo en las 6 páginas HTML — ver el
+   lo de abajo. Luego agrégalo en las páginas HTML — ver el
    paso 1 de LEEME.md.
    ========================================================= */
 
 SECCIONES.push({
-  // identificador simple, sin tildes ni espacios — se usa en la URL
   slug: "joyeria",
-
-  // lo que ve la clienta
   nombre: "Joyería",
   etiqueta: "colección",
   descripcion: "Aros, collares, pulseras y anillos hechos a mano, en piezas únicas o series muy limitadas.",
   imagen_portada: "https://picsum.photos/seed/cat-joyeria/700/700",
 
-  /* -------------------------------------------------------
-     SUBSECCIONES (opcional)
-     Agrupan tus productos dentro de esta sección (ej: Aros,
-     Collares...). Cada producto más abajo indica a cuál
-     pertenece con el campo "subseccion" (usa el "slug").
-     Si no quieres subsecciones en una sección, deja: []
-     ------------------------------------------------------- */
   subsecciones: [
     { slug: "aros", nombre: "Aros" },
     { slug: "collares", nombre: "Collares" },
@@ -31,24 +21,34 @@ SECCIONES.push({
     { slug: "anillos", nombre: "Anillos" },
   ],
 
-  /* -------------------------------------------------------
-     FILTROS — qué "especificaciones" de los productos se
-     pueden filtrar en el menú lateral, y con qué nombre.
-     "clave" debe ser igual a la llave que uses en
-     "especificaciones" dentro de cada producto (más abajo).
-     Ver LEEME.md para agregar una especificación nueva.
-     ------------------------------------------------------- */
   filtros: [
     { clave: "material", etiqueta: "Material" },
     { clave: "color", etiqueta: "Color" },
   ],
 
+  /* -------------------------------------------------------
+     Cada producto puede tener:
+     - slug: opcional. Si no lo pones, se genera solo desde el
+       nombre (ej: "Aros de resina boho" → "aros-de-resina-boho").
+       Ponlo tú mismo solo si quieres una URL más corta o si dos
+       productos quedarían con el mismo slug automático.
+     - imagenes: opcional, lista de fotos para la galería del
+       producto. Si no la pones, se usa solo "imagen".
+     - descripcion_larga: opcional, texto más detallado para la
+       ficha del producto. Si no la pones, se usa "descripcion".
+     ------------------------------------------------------- */
   items: [
     {
       nombre: "Aros de resina boho",
       descripcion: "Aros livianos con flores prensadas, hechos a mano.",
+      descripcion_larga: "Aros livianos hechos a mano en resina transparente, con flores naturales prensadas selladas en su interior. Cada par es único porque las flores nunca quedan exactamente igual. Broche de acero quirúrgico, hipoalergénico.",
       precio: 12000,
       imagen: "https://picsum.photos/seed/joya1/500/500",
+      imagenes: [
+        "https://picsum.photos/seed/joya1/500/500",
+        "https://picsum.photos/seed/joya1b/500/500",
+        "https://picsum.photos/seed/joya1c/500/500",
+      ],
       subseccion: "aros",
       especificaciones: { material: "Resina", color: "Transparente" },
       masVendido: true
@@ -73,8 +73,13 @@ SECCIONES.push({
     {
       nombre: "Aretes colgantes de arcilla polimérica",
       descripcion: "Diseño artesanal pintado a mano, muy livianos.",
+      descripcion_larga: "Aretes colgantes trabajados a mano en arcilla polimérica, pintados uno a uno con pintura acrílica y sellados con barniz mate. Terminación en gancho de acero quirúrgico. Por ser piezas artesanales, pueden existir pequeñas variaciones entre pares.",
       precio: 10000,
       imagen: "https://picsum.photos/seed/joya4/500/500",
+      imagenes: [
+        "https://picsum.photos/seed/joya4/500/500",
+        "https://picsum.photos/seed/joya4b/500/500",
+      ],
       subseccion: "aros",
       especificaciones: { material: "Arcilla polimérica", color: "Rosado" },
       masVendido: true
