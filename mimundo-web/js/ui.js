@@ -42,6 +42,21 @@ function showToast(msg) {
   showToast._timer = setTimeout(() => t.classList.remove("show"), 2600);
 }
 
+function slugify(str) {
+  return String(str)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+// Usa el "slug" del producto si lo definiste en js/secciones/*.js;
+// si no, lo genera solo a partir del nombre (para que nunca falte).
+function itemSlug(item) {
+  return item.slug || slugify(item.nombre);
+}
+
 /* ---------------------------------------------------------
    Tarjeta de producto (se usa en categoria.js y en el
    carrusel de más vendidos de home.js)
@@ -62,18 +77,22 @@ function renderProductCard(item, cat) {
     ? `<div class="class-meta">${pills.map((p) => `<span class="pill">${p}</span>`).join("")}</div>`
     : "";
 
+  const urlDetalle = `producto.html?c=${cat.slug}&p=${itemSlug(item)}`;
+
   card.innerHTML = `
     <div class="card-tape"></div>
     ${item.precio_oferta ? '<span class="ribbon-oferta">Oferta</span>' : ""}
-    <div class="card-photo" style="background-image:url('${item.imagen}')" role="img" aria-label="${item.nombre}"></div>
+    <a href="${urlDetalle}" class="card-photo-link">
+      <div class="card-photo" style="background-image:url('${item.imagen}')" role="img" aria-label="${item.nombre}"></div>
+    </a>
     <div class="card-body">
       ${metaHtml}
-      <h3>${item.nombre}</h3>
+      <a href="${urlDetalle}" class="card-title-link"><h3>${item.nombre}</h3></a>
       <p class="card-desc">${item.descripcion}</p>
       ${precioHtml(item)}
       <div class="card-actions">
         <button type="button" class="btn btn-primary btn-small btn-add">Agregar al carrito</button>
-        <a class="btn btn-ghost" href="${whatsappUrl(`Hola! Tengo una consulta sobre "${item.nombre}" 🌿`)}" target="_blank" rel="noopener">Consultar</a>
+        <a class="btn btn-outline btn-small" href="${urlDetalle}">Ver detalle</a>
       </div>
     </div>
   `;
@@ -134,41 +153,46 @@ function _megaPanelHtml(cat) {
 
 function buildNav() {
   const nav = document.getElementById("mainNav");
-  if (!nav) return;
-
-  const items = SECCIONES.map(
-    (cat) => `
-    <div class="nav-item">
-      <div class="nav-link-row">
-        <a href="categoria.html?c=${cat.slug}" class="nav-link">${cat.nombre}</a>
-        <button type="button" class="nav-caret" aria-label="Mostrar opciones de ${cat.nombre}" aria-expanded="false">▾</button>
+  if (nav) {
+    const items = SECCIONES.map(
+      (cat) => `
+      <div class="nav-item">
+        <div class="nav-link-row">
+          <a href="categoria.html?c=${cat.slug}" class="nav-link">${cat.nombre}</a>
+          <button type="button" class="nav-caret" aria-label="Mostrar opciones de ${cat.nombre}" aria-expanded="false">▾</button>
+        </div>
+        ${_megaPanelHtml(cat)}
       </div>
-      ${_megaPanelHtml(cat)}
-    </div>
-  `
-  ).join("");
+    `
+    ).join("");
 
-  nav.innerHTML = `
-    ${items}
-       <a href="carrito.html" class="nav-cart" aria-label="Carrito de compras">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="9" cy="21" r="1"></circle>
-        <circle cx="20" cy="21" r="1"></circle>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-      </svg>
-      <span class="cart-badge" data-cart-count style="display:none">0</span>
-    </a>
-  
-  `;
+    nav.innerHTML = items;
 
-  nav.querySelectorAll(".nav-caret").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const item = btn.closest(".nav-item");
-      const isOpen = item.classList.toggle("open");
-      btn.setAttribute("aria-expanded", isOpen);
+    nav.querySelectorAll(".nav-caret").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const item = btn.closest(".nav-item");
+        const isOpen = item.classList.toggle("open");
+        btn.setAttribute("aria-expanded", isOpen);
+      });
     });
-  });
+  }
+
+  // El carrito vive fuera de #mainNav para que siempre se vea,
+  // incluso con el menú de secciones cerrado en celular.
+  const cartSlot = document.getElementById("navCartSlot");
+  if (cartSlot) {
+    cartSlot.innerHTML = `
+      <a href="carrito.html" class="nav-cart" aria-label="Carrito de compras">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-badge" data-cart-count style="display:none">0</span>
+      </a>
+    `;
+  }
 }
 
 function setupMobileNav() {
@@ -215,14 +239,6 @@ function setupReveal() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  buildNav();
-  setupMobileNav();
-  setupContactLinks();
-  setupReveal();
-  setupHideOnScroll();
-});
-
 function setupHideOnScroll() {
   const header = document.querySelector(".site-header");
   if (!header) return;
@@ -251,3 +267,24 @@ function setupHideOnScroll() {
     }
   });
 }
+
+function setupPromoBar() {
+  const bar = document.getElementById("promoBar");
+  if (!bar) return;
+
+  const btn = document.getElementById("promoClose");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      bar.style.display = "none";
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  buildNav();
+  setupMobileNav();
+  setupContactLinks();
+  setupReveal();
+  setupHideOnScroll();
+  setupPromoBar();
+});
