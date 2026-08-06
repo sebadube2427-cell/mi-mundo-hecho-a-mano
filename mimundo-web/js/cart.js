@@ -35,15 +35,18 @@ const Cart = (function () {
     return _read();
   }
 
-  // id único por producto = categoría + nombre
-  function _makeId(categoriaSlug, nombre) {
-    return categoriaSlug + "::" + nombre;
+  // id único por producto = categoría + slug del producto
+  // (itemSlug viene de js/ui.js: usa item.slug si existe, o lo
+  // genera solo a partir del nombre)
+  function _makeId(categoriaSlug, item) {
+    const slug = typeof itemSlug === "function" ? itemSlug(item) : item.nombre;
+    return categoriaSlug + "::" + slug;
   }
 
   function add(categoriaSlug, categoriaNombre, item, cantidad) {
     cantidad = cantidad || 1;
     const items = _read();
-    const id = _makeId(categoriaSlug, item.nombre);
+    const id = _makeId(categoriaSlug, item);
     const existing = items.find((it) => it.id === id);
     if (existing) {
       existing.cantidad += cantidad;
