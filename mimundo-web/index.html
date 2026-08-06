@@ -15,16 +15,22 @@
 <body>
 
 <!-- ===== BARRA DE PROMOCIÓN ===== -->
-<!--<div class="promo-bar">🇨🇱 Envíos a todo Chile · <strong>Ofertas de temporada en piezas seleccionadas</strong></div>-->
+<div class="promo-bar" id="promoBar">
+  🇨🇱 Envíos a todo Chile · <strong>Ofertas de temporada en piezas seleccionadas</strong>
+  <button type="button" class="promo-close" id="promoClose" aria-label="Cerrar aviso">✕</button>
+</div>
 
-<!-- ===== NAV (semioculta: se expande al acercar el mouse a cada sección) ===== -->
+<!-- ===== NAV: logo + menú en la misma fila, carrito fijo a la derecha ===== -->
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="logo">Mi Mundo <span>Hecho a Mano</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
     <nav class="main-nav" id="mainNav"></nav>
+    <div class="header-actions">
+      <div id="navCartSlot"></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -49,12 +55,10 @@
   </div>
 </section>
 
-<!-- ===== TABS DE CATEGORÍAS (armados solos desde tus secciones) ===== -->
-<nav class="tabs-categorias" id="tabsCategorias" aria-label="Categorías"></nav>
 
 <div class="stitch-divider" aria-hidden="true"></div>
 
-<!-- ===== MÁS VENDIDOS (scroll horizontal) ===== -->
+<!-- ===== MÁS VENDIDOS (scroll horizontal, se arrastra con el mouse) ===== -->
 <section class="carousel-section" id="carouselSection">
   <div class="carousel-head">
     <div class="section-head" style="margin-bottom:0">
